@@ -1,9 +1,9 @@
 'use strict';
 
-(function() {
   //declaring variables, assign initial values
   var currentImage = {};
   var imageObjects = [];
+  var initImgObjects = [];
   var canvas;
   var objectIndex = 0;
   var framesPlayed = 0;
@@ -16,7 +16,7 @@
   //spriteImage = new Image();
 
   //objects used to initialize imageObjects
-  var initImgObjects =
+  initImgObjects =
     [{
     name: 'vomit_zombie',
     width: 4352,
@@ -116,7 +116,12 @@
     );
   }
 
+  //method to switch from one animation to another
+  Sprite.prototype.switchOut = function() {
+    this.context.clearRect(0, 0, this.width, this.height);
+    this.tickCount = 0;
+    this.frameIndex = 0;
+    this.framesPlayed = 0;
+  }
   //runs the gameLoop
   gameLoop();
-
-}());
