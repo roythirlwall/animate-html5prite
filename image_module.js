@@ -66,10 +66,29 @@ var animations =
   width: 850,
   height: 18,
   context: canvas.getContext('2d'),
-  source: 'img/funny_monster.png',
+  source: 'img/funny_monster_25.png',
   numberOfFrames: 25,
   ticksPerFrame: 5,
   framesToPlay: 75}
+  ],
+  ['8_bit_inv_77',
+  {name: '8_bit_inv_77',
+  width: 33172,
+  height: 312,
+  context: canvas.getContext('2d'),
+  source: 'img/8_bit_inv_77.png',
+  numberOfFrames: 77,
+  ticksPerFrame: 5,
+  framesToPlay: 77}
+  ],
+  ['8_bit_adv_158',
+  {name: '8_bit_adv_158',
+  width: 33315,
+  height: 500,
+  context: canvas.getContext('2d'),
+  source: 'img/8_bit_adv_158.png',
+  numberOfFrames: 158,
+  ticksPerFrame: 5,
+  framesToPlay: 158}
   ]
-
 ];

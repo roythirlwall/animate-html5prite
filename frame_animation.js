@@ -35,10 +35,12 @@
 
   //store current image object in variable
   currentImage = imageObjects[objectIndex];
+  console.log(imageObjects);
 
   //calls requestAnimationFrame, updates image object & renders frame
   function gameLoop() {
-    window.requestAnimationFrame(gameLoop);
+    canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+    requestAnimationFrame(gameLoop);
     currentImage.update();
     currentImage.render();
   }
@@ -88,7 +90,7 @@
         this.framesPlayed = this.framesPlayed + 1;
       }else{
         this.framesPlayed = 0;
-        //something that changes to the next imageObject like:
+        //changes to the next imageObject
         if (objectIndex + 1 < imageObjects.length) {
           objectIndex = objectIndex + 1;
           currentImage = imageObjects[objectIndex];
@@ -117,11 +119,12 @@
   }
 
   //method to switch from one animation to another
+  //does not work yet
   Sprite.prototype.switchOut = function() {
-    this.context.clearRect(0, 0, this.width, this.height);
-    this.tickCount = 0;
+    this.context.clearRect(0, 0, 500, 500);
+    this.tickCount = this.ticksPerFrame;
+    this.framesPlayed = this.framesToPlay;
     this.frameIndex = 0;
-    this.framesPlayed = 0;
   }
   //runs the gameLoop
   gameLoop();
