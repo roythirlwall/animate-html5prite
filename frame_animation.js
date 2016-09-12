@@ -67,7 +67,7 @@
   //tickCount - used to switch to next frame on sprite sheet
   //            resets to zero once ticksPerFrame reached
   //ticksPerFrame - the number of update/render cycles before
-  //                next frame is rendered - can decrease the fps
+  //                next frame is rendered - to decrease the fps
   //frameIndex - index of the current frame to display
   //             resets to zero once numberOfFrames reached
   //numberOfFrames - number of frames on the sprite sheet

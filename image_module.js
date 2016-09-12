@@ -90,5 +90,15 @@ var animations =
   numberOfFrames: 158,
   ticksPerFrame: 5,
   framesToPlay: 158}
+  ],
+  ['sway_shadow',
+  {name: 'sway_shadow_32',
+  width: 21333,
+  height: 500,
+  context: canvas.getContext('2d'),
+  source: 'img/sway_shadow_32.png',
+  numberOfFrames: 32,
+  ticksPerFrame: 5,
+  framesToPlay: 128}
   ]
 ];
