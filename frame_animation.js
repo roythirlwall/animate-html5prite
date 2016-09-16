@@ -119,7 +119,6 @@
   }
 
   //method to switch from one animation to another
-  //does not work yet
   Sprite.prototype.switchOut = function() {
     this.context.clearRect(0, 0, 500, 500);
     this.tickCount = this.ticksPerFrame;
@@ -127,4 +126,4 @@
     this.frameIndex = 0;
   }
   //runs the gameLoop
-  gameLoop();
+  //gameLoop();
