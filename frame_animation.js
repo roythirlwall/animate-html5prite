@@ -1,3 +1,15 @@
+/*
+  This module exposes methods that accept a horizontal sprite sheet and return
+  a html5 Canvas animation. The html will need a canvas element with the id "animate"
+  or one should be attached to the DOM for this to work.
+
+  As always, I stand on the shoulders of peers, can't get anywhere w/out research!
+
+  Thanks to William Malone for the tutorial: http://www.williammalone.com/articles/create-html5-canvas-javascript-sprite-animation/
+  Thanks to Louis Fremi for a deeper dive into requestAnimationFrame:
+  https://hacks.mozilla.org/2011/08/animating-with-javascript-from-setinterval-to-requestanimationframe/
+*/
+
 'use strict';
 
 //declaring variables, assign initial values
@@ -39,7 +51,7 @@ console.log(imageObjects);
 
 //calls requestAnimationFrame, updates image object & renders frame
 function gameLoop() {
-  canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+  canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
   requestAnimationFrame(gameLoop);
   currentImage.update();
   currentImage.render();
@@ -124,6 +136,6 @@ Sprite.prototype.switchOut = function() {
   this.tickCount = this.ticksPerFrame;
   this.framesPlayed = this.framesToPlay;
   this.frameIndex = 0;
-}
+};
 //runs the gameLoop
 //gameLoop();
