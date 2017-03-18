@@ -1,6 +1,7 @@
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /*
-  This module exposes methods that accept a horizontal sprite sheet and return
-  a html5 Canvas animation. The html will need a canvas element with the id "animate"
+  This module exposes methods that accept a horizontal sprite sheet and creates
+  an html5 Canvas animation. The html will need a canvas element with the id "animate"
   or one should be attached to the DOM for this to work.
 
   As always, I stand on the shoulders of peers, can't get anywhere w/out research!
@@ -11,6 +12,15 @@
 */
 
 'use strict';
+
+// need to use module.exports
+// need to expose Sprite(options) constructor function
+// need to expose gameLoop()
+// options is an array of objects with the values for each sprite sheet "panel"
+// one or more panels make up each animation object
+
+// object to be exported
+var frameAnimation = {};
 
 //declaring variables, assign initial values
 var currentImage = {};
@@ -23,6 +33,7 @@ var framesToPlay;
 
 //store canvas element in variable
 canvas = document.getElementById('animate');
+console.log('in frame-anim', canvas);
 
 //create & store img element in a variable
 //spriteImage = new Image();
@@ -47,7 +58,7 @@ for (var i=0; i<initImgObjects.length; i++) {
 
 //store current image object in variable
 currentImage = imageObjects[objectIndex];
-console.log(imageObjects);
+console.log('the array of img obj', imageObjects);
 
 //calls requestAnimationFrame, updates image object & renders frame
 function gameLoop() {
@@ -128,7 +139,7 @@ Sprite.prototype.render = function() {
     this.width / this.numberOfFrames,
     this.height
   );
-}
+};
 
 //method to switch from one animation to another
 Sprite.prototype.switchOut = function() {
@@ -137,5 +148,38 @@ Sprite.prototype.switchOut = function() {
   this.framesPlayed = this.framesToPlay;
   this.frameIndex = 0;
 };
-//runs the gameLoop
-//gameLoop();
+
+frameAnimation.Sprite = Sprite;
+frameAnimation.gameLoop = gameLoop;
+
+module.exports = frameAnimation;
+},{}],2:[function(require,module,exports){
+// this file is so browserify will work
+
+var frameAnimate = require('./frame-animation');
+
+var frameAnimation = require('./frame-animation');
+
+var theImg = {
+  name: '8_bit_inv_77',
+  width: 33172,
+  height: 312,
+  context: '',
+  source: 'img/8_bit_inv_77.png',
+  numberOfFrames: 77,
+  ticksPerFrame: 5,
+  framesToPlay: 77
+};
+
+// window.addEventListener('load', console.log('in here'), false)
+//   .then(Sprite(theImg))
+//   .then(gameLoop())
+//   .catch(function(err) {
+//     console.log('oops, something went wrong')
+//   });
+
+new frameAnimate.Sprite(theImg);
+console.log(frameAnimate.gameLoop);
+console.log(frameAnimate);
+frameAnimate.gameLoop();
+},{"./frame-animation":1}]},{},[2]);
