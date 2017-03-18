@@ -1,6 +1,5 @@
 //objects used to initialize imageObjects
-var animations =
-  [
+var animations = [
   ['okmaybenot',
   {name: 'every',
   width: 1500,
