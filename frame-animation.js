@@ -64,7 +64,7 @@ function Sprite(imgDataObj) {
   this.framesPlayed = 0;
 }
 
-// update method - called from current image or sprite sheet
+// update method - called from current image/sprite sheet
 Sprite.prototype.update = function() {
   this.tickCount += 1;
   if (this.tickCount > this.ticksPerFrame) {
@@ -90,7 +90,7 @@ Sprite.prototype.update = function() {
   }
 };
 
-// render method - called from current image or sprite sheet
+// render method - called from current image/sprite sheet
 Sprite.prototype.render = function() {
   this.context.clearRect(0, 0, this.width, this.height);
   this.context.drawImage(
