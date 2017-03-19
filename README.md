@@ -1,10 +1,10 @@
 #  animate-HTML5prite
 
-### This module takes a horizontal sprite sheet and creates an html5 animation. It uses a constructor function to take the data and connect a counter that is used to advance frame-by-frame.
+### This module takes a horizontal sprite sheet and creates an html5 animation. It uses a constructor function to take the data and connects counter properties used to advance frame-by-frame.
 ### module.exports exposes methods that takes an array of data objects that correspond to each sprite sheet used in the animation.
 ### The html will need a canvas element with the id "animate" or one should be attached to the DOM for this to work. As always, I stand on the shoulders of peers, can't get anywhere w/out research!
 
-### This module is on npm - <link>
+### This module is on npm - https://www.npmjs.com/package/animate-html5prite
 ### You must have node installed to use this module to use it in your project by running at the command line:
 ```
 npm install animate-html5prite
