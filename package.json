@@ -1,0 +1,27 @@
+{
+  "name": "frame-animation",
+  "version": "0.1.0",
+  "description": "this is a module to take a sprite sheet and turn it into an html5 animation",
+  "main": "frame-animation.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timcombs/animate-HTML5prite.git"
+  },
+  "keywords": [
+    "sprite",
+    "animation",
+    "canvas",
+    "html5",
+    "sprite",
+    "sheet"
+  ],
+  "author": "Tim Combs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/timcombs/animate-HTML5prite/issues"
+  },
+  "homepage": "https://github.com/timcombs/animate-HTML5prite#readme"
+}
