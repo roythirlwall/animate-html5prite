@@ -7,7 +7,7 @@
 ### This module is on npm - <link>
 ### You must have node installed to use this module to use it in your project by running at the command line:
 ```
-npm install animate-HTML5prite
+npm install animate-html5prite
 ```
 ### then require it into .js files by including the line:
 ```

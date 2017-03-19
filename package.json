@@ -1,5 +1,5 @@
 {
-  "name": "animate-HTML5prite",
+  "name": "animate-html5prite",
   "version": "1.0.0",
   "description": "this is a module to take a sprite sheet and turn it into an html5 animation",
   "main": "frame-animation.js",
