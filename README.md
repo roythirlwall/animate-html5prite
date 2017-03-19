@@ -75,6 +75,6 @@ var theImg = [{
 ### ISC - see LICENSE.md for more details
 
   Thanks to William Malone for the tutorial:
-  http:www.williammalone.com/articles/create-html5-canvas-javascript-sprite-animation/
+  http://www.williammalone.com/articles/create-html5-canvas-javascript-sprite-animation/
   Thanks to Louis Fremi for a deeper dive into requestAnimationFrame:
   https://hacks.mozilla.org/2011/08/animating-with-javascript-from-setinterval-to-requestanimationframe/
