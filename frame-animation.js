@@ -14,7 +14,7 @@
 
 // declaring variables, assign initial values
 var currentImage = {};
-var imageObjects = [];
+var imageDataObjects = [];
 var canvas;
 var objectIndex = 0;
 var framesPlayed = 0;
@@ -26,15 +26,16 @@ var frameAnimation = {};
 // store canvas element in variable
 canvas = document.getElementById('animate');
 
-// imgDataArr is an array of img objects - each obj a separate sprite sheet
+// imgDataArr is an array of img data objects
+// each imgDataObj refers to a separate sprite sheet
 function initAnimation(imgDataArr) {
   //creating & storing imageObjects in array
   for (var i = 0; i < imgDataArr.length; i++) {
-    imageObjects.push(new Sprite(imgDataArr[i]));
+    imageDataObjects.push(new Sprite(imgDataArr[i]));
   }
 
   // the Sprite that contains current sprite sheet data
-  currentImage = imageObjects[0];
+  currentImage = imageDataObjects[0];
 }
 
 // calls requestAnimationFrame, updates image object & renders frame
@@ -46,21 +47,21 @@ function gameLoop() {
 }
 
 // image constructor function
-function Sprite(options) {
-  this.name = options.name;
-  this.context = canvas.getContext('2d');
-  this.width = options.width;
-  this.height = options.height;
+function Sprite(imgDataObj) {
+  this.name = imgDataObj.name;
+  this.width = imgDataObj.width;
+  this.height = imgDataObj.height;
+
   this.image = new Image();
-  this.image.src = options.source;
-  this.numberOfFrames = options.numberOfFrames;
-  this.ticksPerFrame = options.ticksPerFrame;
-  this.framesToPlay = options.framesToPlay;
-  this.framesPlayed = 0;
+  this.image.src = imgDataObj.source;
+  this.context = canvas.getContext('2d');
+
   this.tickCount = 0;
+  this.ticksPerFrame = imgDataObj.ticksPerFrame || 0;
   this.frameIndex = 0;
-  this.ticksPerFrame = options.ticksPerFrame || 0;
-  this.numberOfFrames = options.numberOfFrames || 1;
+  this.numberOfFrames = imgDataObj.numberOfFrames || 1;
+  this.framesToPlay = imgDataObj.framesToPlay;
+  this.framesPlayed = 0;
 }
 
 // update method - called from current image or sprite sheet

@@ -1,4 +1,4 @@
-var frameAnimate = require('./frame-animation');
+var frameAnimate = require('../frame-animation');
 
 var theImg = [{
   name: 'example',
