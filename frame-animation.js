@@ -12,49 +12,25 @@
 
 'use strict';
 
-// need to use module.exports
-// need to expose Sprite(options) constructor function
-// need to expose gameLoop()
-// options is an array of objects with the values for each sprite sheet "panel"
-// one or more panels make up each animation object
-
-// object to be exported
-var frameAnimation = {};
-
 // declaring variables, assign initial values
 var currentImage = {};
 var imageObjects = [];
-// var initImgObjects = [];
 var canvas;
 var objectIndex = 0;
 var framesPlayed = 0;
 var framesToPlay;
 
+// object to be exported
+var frameAnimation = {};
+
 // store canvas element in variable
 canvas = document.getElementById('animate');
-console.log('in frame-anim', canvas);
 
-// create & store img element in a variable
-// spriteImage = new Image();
-
-// objects used to initialize imageObjects
-// initImgObjects =
-//   [{
-//     name: 'vomit_zombie',
-//     width: 4352,
-//     height: 256,
-//     context: canvas.getContext('2d'),
-//     source: 'img/vomit_zombie.png',
-//     numberOfFrames: 17,
-//     ticksPerFrame: 5,
-//     framesToPlay: 85,
-//   }];
-
-// imgObjArr is an array of img objects - each a separate sprite sheet
-function initAnimation(imgObjArr) {
+// imgDataArr is an array of img objects - each obj a separate sprite sheet
+function initAnimation(imgDataArr) {
   //creating & storing imageObjects in array
-  for (var i = 0; i < imgObjArr.length; i++) {
-    imageObjects.push(new Sprite(imgObjArr[i]));
+  for (var i = 0; i < imgDataArr.length; i++) {
+    imageObjects.push(new Sprite(imgDataArr[i]));
   }
 
   // the Sprite that contains current sprite sheet data
@@ -65,8 +41,6 @@ function initAnimation(imgObjArr) {
 function gameLoop() {
   canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
   requestAnimationFrame(gameLoop);
-  console.log('current Image', currentImage);
-  if (currentImage === undefined) { return; }
   currentImage.update();
   currentImage.render();
 }
@@ -88,19 +62,6 @@ function Sprite(options) {
   this.ticksPerFrame = options.ticksPerFrame || 0;
   this.numberOfFrames = options.numberOfFrames || 1;
 }
-
-// counter mechanism info - used in update and render methods
-// tickCount - used to switch to next frame on sprite sheet
-//            resets to zero once ticksPerFrame reached
-// ticksPerFrame - the number of update/render cycles before
-//                next frame is rendered - to decrease the fps
-// frameIndex - index of the current frame to display
-//             resets to zero once numberOfFrames reached
-// numberOfFrames - number of frames on the sprite sheet
-// framesToPlay -  number of frames to play before switching
-//                to next image(or spritesheet)
-// framesPlayed - number of frames played for each image
-//               resets to zero once framesToPlay reached
 
 // update method - called from current image or sprite sheet
 Sprite.prototype.update = function() {
@@ -126,7 +87,7 @@ Sprite.prototype.update = function() {
       }
     }
   }
-}
+};
 
 // render method - called from current image or sprite sheet
 Sprite.prototype.render = function() {
@@ -144,13 +105,14 @@ Sprite.prototype.render = function() {
   );
 };
 
-// method to switch from one animation to another
-Sprite.prototype.switchOut = function() {
-  this.context.clearRect(0, 0, 500, 500);
-  this.tickCount = this.ticksPerFrame;
-  this.framesPlayed = this.framesToPlay;
-  this.frameIndex = 0;
-};
+// TODO: refactor this so it can be used to switch between multiple animations
+// // method to switch from one animation to another
+// Sprite.prototype.switchOut = function() {
+//   this.context.clearRect(0, 0, 500, 500);
+//   this.tickCount = this.ticksPerFrame;
+//   this.framesPlayed = this.framesToPlay;
+//   this.frameIndex = 0;
+// };
 
 frameAnimation.initAnimation = initAnimation;
 frameAnimation.gameLoop = gameLoop;
