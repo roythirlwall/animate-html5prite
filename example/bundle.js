@@ -1,4 +1,19 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var frameAnimate = require('../frame-animation');
+
+var theImg = [{
+  name: 'example',
+  width: 7500,
+  height: 300,
+  source: 'img/example.png',
+  numberOfFrames: 25,
+  ticksPerFrame: 15,
+  framesToPlay: 25
+}];
+
+frameAnimate.initAnimation(theImg);
+frameAnimate.gameLoop();
+},{"../frame-animation":2}],2:[function(require,module,exports){
 /*
   This module exposes methods that accept a horizontal sprite sheet and creates
   an html5 Canvas animation. The html will need a canvas element with the id "animate"
@@ -15,7 +30,7 @@
 
 // declaring variables, assign initial values
 var currentImage = {};
-var imageObjects = [];
+var imageDataObjects = [];
 var canvas;
 var objectIndex = 0;
 var framesPlayed = 0;
@@ -27,15 +42,16 @@ var frameAnimation = {};
 // store canvas element in variable
 canvas = document.getElementById('animate');
 
-// imgDataArr is an array of img objects - each obj a separate sprite sheet
+// imgDataArr is an array of img data objects
+// each imgDataObj refers to a separate sprite sheet
 function initAnimation(imgDataArr) {
   //creating & storing imageObjects in array
   for (var i = 0; i < imgDataArr.length; i++) {
-    imageObjects.push(new Sprite(imgDataArr[i]));
+    imageDataObjects.push(new Sprite(imgDataArr[i]));
   }
 
   // the Sprite that contains current sprite sheet data
-  currentImage = imageObjects[0];
+  currentImage = imageDataObjects[0];
 }
 
 // calls requestAnimationFrame, updates image object & renders frame
@@ -47,21 +63,21 @@ function gameLoop() {
 }
 
 // image constructor function
-function Sprite(options) {
-  this.name = options.name;
-  this.context = canvas.getContext('2d');
-  this.width = options.width;
-  this.height = options.height;
+function Sprite(imgDataObj) {
+  this.name = imgDataObj.name;
+  this.width = imgDataObj.width;
+  this.height = imgDataObj.height;
+
   this.image = new Image();
-  this.image.src = options.source;
-  this.numberOfFrames = options.numberOfFrames;
-  this.ticksPerFrame = options.ticksPerFrame;
-  this.framesToPlay = options.framesToPlay;
-  this.framesPlayed = 0;
+  this.image.src = imgDataObj.source;
+  this.context = canvas.getContext('2d');
+
   this.tickCount = 0;
+  this.ticksPerFrame = imgDataObj.ticksPerFrame || 0;
   this.frameIndex = 0;
-  this.ticksPerFrame = options.ticksPerFrame || 0;
-  this.numberOfFrames = options.numberOfFrames || 1;
+  this.numberOfFrames = imgDataObj.numberOfFrames || 1;
+  this.framesToPlay = imgDataObj.framesToPlay;
+  this.framesPlayed = 0;
 }
 
 // update method - called from current image or sprite sheet
@@ -119,19 +135,4 @@ frameAnimation.initAnimation = initAnimation;
 frameAnimation.gameLoop = gameLoop;
 
 module.exports = frameAnimation;
-},{}],2:[function(require,module,exports){
-var frameAnimate = require('./frame-animation');
-
-var theImg = [{
-  name: 'example',
-  width: 7500,
-  height: 300,
-  source: 'img/example.png',
-  numberOfFrames: 25,
-  ticksPerFrame: 15,
-  framesToPlay: 25
-}];
-
-frameAnimate.initAnimation(theImg);
-frameAnimate.gameLoop();
-},{"./frame-animation":1}]},{},[2]);
+},{}]},{},[1]);
