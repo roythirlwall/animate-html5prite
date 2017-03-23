@@ -42,10 +42,10 @@ var frameAnimation = {};
 // store canvas element in variable
 canvas = document.getElementById('animate');
 
-// imgDataArr is an array of img data objects
+// imgDataArr is an array of objects with the img data
 // each imgDataObj refers to a separate sprite sheet
 function initAnimation(imgDataArr) {
-  //creating & storing imageObjects in array
+  //instantiate & store full imageDataObjects in array
   for (var i = 0; i < imgDataArr.length; i++) {
     imageDataObjects.push(new Sprite(imgDataArr[i]));
   }
@@ -62,7 +62,7 @@ function gameLoop() {
   currentImage.render();
 }
 
-// image constructor function
+// image constructor function takes img data to instantiate new object
 function Sprite(imgDataObj) {
   this.name = imgDataObj.name;
   this.width = imgDataObj.width;
@@ -80,7 +80,7 @@ function Sprite(imgDataObj) {
   this.framesPlayed = 0;
 }
 
-// update method - called from current image or sprite sheet
+// update method - called from current image/sprite sheet
 Sprite.prototype.update = function() {
   this.tickCount += 1;
   if (this.tickCount > this.ticksPerFrame) {
@@ -94,19 +94,19 @@ Sprite.prototype.update = function() {
       this.framesPlayed = this.framesPlayed + 1;
     }else{
       this.framesPlayed = 0;
-      //changes to the next imageObject
-      if (objectIndex + 1 < imageObjects.length) {
+      //changes to the next imageDataObject
+      if (objectIndex + 1 < imageDataObjects.length) {
         objectIndex = objectIndex + 1;
-        currentImage = imageObjects[objectIndex];
+        currentImage = imageDataObjects[objectIndex];
       }else{
         objectIndex = 0;
-        currentImage = imageObjects[objectIndex];
+        currentImage = imageDataObjects[objectIndex];
       }
     }
   }
 };
 
-// render method - called from current image or sprite sheet
+// render method - called from current image/sprite sheet
 Sprite.prototype.render = function() {
   this.context.clearRect(0, 0, this.width, this.height);
   this.context.drawImage(
