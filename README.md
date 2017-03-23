@@ -2,7 +2,12 @@
 
 ### This module takes a horizontal sprite sheet and creates an html5 animation. It uses a constructor function to take the data and connects counter properties used to advance frame-by-frame.
 ### module.exports exposes methods that takes an array of data objects that correspond to each sprite sheet used in the animation.
-### The html will need a canvas element with the id "animate" or one should be attached to the DOM for this to work. As always, I stand on the shoulders of peers, can't get anywhere w/out research!
+### The html will need a canvas element with the id "animate" or one should be attached to the DOM for this to work.
+```
+<canvas id="animate" width="500" height="500"></canvas>
+```
+
+### As always, I stand on the shoulders of peers, can't get anywhere w/out research!
 
 ### This module is on npm - https://www.npmjs.com/package/animate-html5prite
 ### You must have node installed to use this module to use it in your project by running at the command line:
@@ -62,7 +67,12 @@ var theImg = [{
 
 ### Used Browserify - https://browserify.org/ - to create a bundle to test module while development.
 ### Run bundle by downloading repo and opening up example.html in your favorite browser.
-#### NOTE: Again, this is just to show how the animation operates. You will use node to require in the module in your own projects
+#### NOTE: You will need to install browserify globally to run the bundle
+```
+npm install browserify -g
+```
+###    Again, this is just to show how the animation operates.
+###    You will use node to require the module into your own projects
 
 ## Collborations/Questions/issues
   - Always looking for collaborators
